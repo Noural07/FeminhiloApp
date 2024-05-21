@@ -12,5 +12,11 @@ namespace Feminhilo.Services
     {
         [Get("/api/items")]
         Task<ItemD[]> GetItemsAsync();
+
+        [Post("/api/items")]
+        Task<ItemD> PostItemAsync([Body] ItemD newItem);
+
+        [Delete("/api/items/{id}")]
+        Task DeleteItemAsync(int id);
     }
 }
