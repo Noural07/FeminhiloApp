@@ -11,6 +11,15 @@ namespace Feminhilo.Pages
             InitializeComponent();
             _cartViewModel = cartViewModel;
             BindingContext = _cartViewModel;
+
+        }
+
+        private async void OnCheckoutClicked(object sender, EventArgs e)
+        {
+            // Implement your checkout logic here
+            await DisplayAlert("Checkout", "Proceeding to checkout...", "OK");
+
+            
         }
     }
 }
