@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:data="clr-namespace:Fem.Shared.Data;assembly=Fem.Shared"
+             x:Class="Feminhilo.Pages.CartPage"
+             Title="My Cart">
+
+    <!-- Define ListView with a Grid in the DataTemplate for a table-like layout -->
+    <ListView ItemsSource="{Binding CartItems}">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <Grid Padding="10"
+                          ColumnSpacing="10"
+                          RowSpacing="10"
+                          ColumnDefinitions="100, Auto, *, Auto">
+                        <!-- Image Column -->
+                        <Image Source="{Binding Image}" 
+                               Aspect="AspectFill"
+                               HeightRequest="50"
+                               WidthRequest="50"
+                               Grid.Column="0" />
+                        <!-- Name Column -->
+                        <Label Text="{Binding Name}" 
+                               Grid.Column="1"
+                               VerticalOptions="Center" />
+                        <!-- Price Column -->
+                        <Label Text="{Binding Price, StringFormat='{0:C}'}" 
+                               Grid.Column="2"
+                               VerticalOptions="Center"
+                               HorizontalOptions="End" />
+                        <!-- Quantity or another property -->
+                        <Label Text="Qty: 1" 
+                            Grid.Column="3"
+                               VerticalOptions="Center"
+                               HorizontalOptions="End" />
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+</ContentPage>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Feminhilo.ViewModels"
+             xmlns:data="clr-namespace:Fem.Shared.Data;assembly=Fem.Shared"
+             x:Class="Feminhilo.Pages.HomePage"
+             x:Name="homePage"
+             Title="HomePage"
+             x:DataType="vm:HomeViewModel">
+
+    <Grid>
+        <ScrollView>
+            <VerticalStackLayout>
+                <VerticalStackLayout Padding="10">
+                    <Label Text="Welcome To Feminhilo"
+                           FontSize="35"
+                           FontAttributes="Bold"/>
+                </VerticalStackLayout>
+
+                <CollectionView ItemsSource="{Binding Items}">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical"
+                                         Span="2"
+                                         VerticalItemSpacing="20"/>
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="data:ItemD">
+                            <Border BackgroundColor="#3a0ca3"
+                                    StrokeThickness="0"
+                                    StrokeShape="RoundRectangle 10">
+                                <Grid RowDefinitions="*, Auto, Auto, Auto">
+                                    <Image Grid.Row="0"
+                                           Source="{Binding Image}" 
+                                           HeightRequest="200"
+                                           WidthRequest="350"
+                                           Aspect="AspectFill"
+                                           BackgroundColor="Transparent"/>
+                                    <Label Grid.Row="1"
+                                           Text="{Binding Name}"
+                                           TextColor="White"
+                                           FontAttributes="Bold"
+                                           HorizontalOptions="Center"/>
+                                    <Label Grid.Row="2"
+                                           Text="{Binding Price, StringFormat='{0:C}'}"
+                                           TextColor="White"
+                                           HorizontalOptions="Center"/>
+                                    <Button Grid.Row="3"
+                                            Text="Add to Cart"
+                                            Clicked="OnAddToCartClicked" />
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <ActivityIndicator IsRunning="{Binding IsBusy}"
+                           IsVisible="{Binding IsBusy}"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center"
+                           Color="Purple"/>
+    </Grid>
+</ContentPage>

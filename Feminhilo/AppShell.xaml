@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="Feminhilo.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:Pages="clr-namespace:Feminhilo.Pages"
+    xmlns:pages="clr-namespace:Feminhilo.Pages"
+    Shell.FlyoutBehavior="Disabled"
+    Title="Feminhilo">
+
+    <Shell.Behaviors>
+        <toolkit:StatusBarBehavior StatusBarColor="Black"/>
+    </Shell.Behaviors>
+
+    <!--<ShellContent
+        Title="Home"
+        ContentTemplate="{DataTemplate local:MainPage}"
+        Route="MainPage" />-->
+
+    <TabBar>
+        <ShellContent
+        Title="Home"
+        ContentTemplate="{DataTemplate Pages:HomePage}"
+        Icon="home"
+        Route="HomePage" />
+        <ShellContent
+        Title="Cart"
+        Icon="cart"
+        ContentTemplate="{DataTemplate Pages:CartPage}"
+        Route="CartPage" />
+    </TabBar>
+
+</Shell>
