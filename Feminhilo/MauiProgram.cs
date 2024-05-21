@@ -42,6 +42,8 @@ namespace Feminhilo
             builder.Services.AddSingleton<CartViewModel>();
             builder.Services.AddTransient<CartPage>();
 
+            builder.Services.AddTransient<AddItemPage>();
+
 
             ConfigurationRefit(builder.Services);
             return builder.Build();

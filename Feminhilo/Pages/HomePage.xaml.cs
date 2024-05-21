@@ -1,5 +1,6 @@
 using Fem.Shared.Data;
 using Feminhilo.ViewModels;
+using Feminhilo.Services;
 
 namespace Feminhilo.Pages
 {
@@ -7,14 +8,35 @@ namespace Feminhilo.Pages
     {
         private readonly HomeViewModel _homeViewModel;
         private readonly CartViewModel _cartViewModel;
+        private readonly IItemsApi _itemService;
 
-        public HomePage(HomeViewModel homeViewModel, CartViewModel cartViewModel)
+
+        public HomePage(HomeViewModel homeViewModel, CartViewModel cartViewModel, IItemsApi itemService)
         {
             InitializeComponent();
             _homeViewModel = homeViewModel;
             _cartViewModel = cartViewModel;
             BindingContext = _homeViewModel;
+            _itemService = itemService;
+
+#if WINDOWS || MACCATALYST
+            var addItemButton = new Button
+            {
+                Text = "Add Item",
+                VerticalOptions = LayoutOptions.Start,
+                HorizontalOptions = LayoutOptions.Center
+            };
+            addItemButton.Clicked += OnAddItemButtonClicked;
+            mainLayout.Children.Insert(1, addItemButton); // Add button at the top, after the welcome label
+#endif
         }
+
+#if WINDOWS || MACCATALYST
+        private async void OnAddItemButtonClicked(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync(nameof(AddItemPage));
+        }
+#endif
 
         private void OnAddToCartClicked(object sender, EventArgs e)
         {

@@ -10,11 +10,13 @@
 
     <Grid>
         <ScrollView>
-            <VerticalStackLayout>
+            <VerticalStackLayout x:Name="mainLayout">
                 <VerticalStackLayout Padding="10">
                     <Label Text="Welcome To Feminhilo"
                            FontSize="35"
                            FontAttributes="Bold"/>
+                    
+                    
                 </VerticalStackLayout>
 
                 <CollectionView ItemsSource="{Binding Items}">
