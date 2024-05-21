@@ -16,6 +16,10 @@ namespace Feminhilo
 {
     public static class MauiProgram
     {
+
+        private static readonly string BaseAddress = DeviceInfo.Platform == DevicePlatform.Android
+        ? "https://v0l0qcpd-7034.euw.devtunnels.ms"  // Use your actual dev tunnel URL
+        : "https://localhost:7034";
         public static MauiApp CreateMauiApp()
         {
             var builder = MauiApp.CreateBuilder();
@@ -65,16 +69,18 @@ namespace Feminhilo
             };
             services.AddRefitClient<IItemsApi>(refitSettings).ConfigureHttpClient(SetHttpClient);
 
-                static void SetHttpClient(HttpClient httpClient) 
-            {
-                var baseUrl = DeviceInfo.Platform == DevicePlatform.Android
-                    ? "https://10.0.2.2:"
-                    : "https://localhost:7034";
+               
 
-                httpClient.BaseAddress = new Uri(baseUrl);
-            }
+         static void SetHttpClient(HttpClient httpClient)
+        {
+            var baseUrl = DeviceInfo.Platform == DevicePlatform.Android
+                ? "https://10.0.2.2:7034"  // Android emulator uses 10.0.2.2 to connect to localhost
+                : BaseAddress;  // For other platforms, use the base address
 
-            
+            httpClient.BaseAddress = new Uri(baseUrl);
         }
+
+
+    }
     }
 }
